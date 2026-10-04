@@ -396,45 +396,6 @@ export const OverviewDashboard: React.FC = () => {
         )}
       </div>
 
-      {/* 4 Protected Assets Grid (Clear & Visual) */}
-      <div className="bg-surface border border-border-subtle rounded-xl p-5 space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-sm font-bold text-primary-text">Protected Assets</h3>
-            <p className="text-xs text-secondary-text mt-0.5">
-              Authorities configured for automated continuity handover.
-            </p>
-          </div>
-          <span className="text-[11px] font-mono text-secondary-muted">4 Assets Bound</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {activeProject.assets.map((asset) => (
-            <div
-              key={asset.key}
-              className={`p-3.5 rounded-lg border flex flex-col justify-between space-y-2 transition-colors ${
-                asset.status === "Transferred"
-                  ? "bg-status-green/10 border-status-green/40"
-                  : "bg-surface-raised border-border-subtle"
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="text-xs font-bold text-primary-text">{asset.key}</span>
-                  <StatusBadge status={asset.status} size="sm" />
-                </div>
-                <div className="text-[11px] text-secondary-text line-clamp-2">
-                  {asset.description}
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-border-subtle/60 text-[10px] font-mono text-secondary-muted truncate">
-                {asset.integration}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Quick Summary Cards (Simple & Focused) */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
