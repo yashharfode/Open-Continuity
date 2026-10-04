@@ -107,7 +107,7 @@ export const DemoBar: React.FC = () => {
               <span>{rohan?.hasApproved ? "✓ Rohan Approved" : "4. Approve (Rohan)"}</span>
             </button>
 
-            {approvedCount >= 2 && status !== "TIMELOCK_ACTIVE" && (
+            {approvedCount >= 2 && (
               <button
                 onClick={() => {
                   startTimelock();
