@@ -10,9 +10,16 @@ import {
   ExternalLink,
   ShieldCheck,
   RefreshCw,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 
-export const Topbar: React.FC = () => {
+interface TopbarProps {
+  onToggleSidebar?: () => void;
+  isSidebarOpen?: boolean;
+}
+
+export const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar, isSidebarOpen = true }) => {
   const {
     projects,
     activeProject,
@@ -27,6 +34,17 @@ export const Topbar: React.FC = () => {
     <header className="h-14 border-b border-border-subtle bg-background-secondary/95 px-6 flex items-center justify-between z-20">
       {/* Project Selector & Status */}
       <div className="flex items-center gap-3">
+        {/* Sidebar Toggle (Desktop) */}
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            className="hidden lg:flex p-1.5 rounded-lg bg-surface border border-border-subtle hover:border-border-default text-secondary-muted hover:text-primary-text transition-colors"
+            title="Toggle Sidebar"
+          >
+            {isSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
+          </button>
+        )}
+
         {/* Project Dropdown */}
         <div className="relative">
           <button
@@ -89,8 +107,7 @@ export const Topbar: React.FC = () => {
 
       {/* Right Side Status & Network */}
       <div className="flex items-center gap-3">
-        <StatusBadge status={activeProject.status} size="sm" />
-
+        {/* StatusBadge removed */}
         <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-border-subtle font-mono text-[11px] text-secondary-muted">
           <span className="w-1.5 h-1.5 rounded-full bg-status-green"></span>
           <span>Sepolia: 0x0C77...91A0</span>
